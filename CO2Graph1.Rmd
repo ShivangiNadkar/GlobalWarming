@@ -1,0 +1,25 @@
+---
+title: "CO2 Levels"
+author: "Alex Kuai"
+date: "2022-11-03"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(readxl)
+library(tidyverse)
+```
+
+
+```{r}
+data <- read_excel(path = "CO2Data1.xlsx", sheet = "CO2 Data Set 1")
+```
+
+```{r}
+data |> 
+  ggplot(aes(x = Year, y = PPM)) +
+  geom_point()
+```
+
+
