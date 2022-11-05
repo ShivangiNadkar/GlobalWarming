@@ -19,7 +19,7 @@ data <- read_excel(path = "CO2Data1.xlsx", sheet = "CO2 Data Set 1")
 
 ```{r}
 plot_ly(data, x = ~Year, y = ~PPM) |> 
-  layout(title = "CO2 levels from 1959 to 2022 Graph 1", yaxis = list(title = 'Carbon Dioxide in Parts Per Million(PPM)'))
+  layout(title = "CO2 levels from 1959 to 2022 Graph 1", yaxis = list(title = 'CO2 in Parts Per Million(PPM)'))
 ```
 
 

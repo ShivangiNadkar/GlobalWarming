@@ -17,6 +17,16 @@ Temp2<-read.csv("Temp2Data.csv")
 ```
 
 ```{r}
+plot_ly(Temp2, x = ~Year, y = ~Degrees.C)|>
+  layout(title = "Temperature change from 1958 to 2020 in °C", yaxis = list(title = "Change in Temperature (°C)"))
+```
 
+```{r}
+#in case plotly doesnt work:
+Temp2|> ggplot(aes(x = Year, y = Degrees.C)) +
+  geom_point() +
+  labs( title = "Temperature change from 1958 to 2020 in °C",
+      y = "Change in Temperature (°C)",
+      caption = "GISTEMP version 4")
 ```
 
