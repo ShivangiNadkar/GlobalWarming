@@ -9,6 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = FALSE)
 library(readxl)
 library(tidyverse)
+library(plotly)
 ```
 
 
@@ -17,9 +18,7 @@ data <- read_excel(path = "CO2Data1.xlsx", sheet = "CO2 Data Set 1")
 ```
 
 ```{r}
-data |> 
-  ggplot(aes(x = Year, y = PPM)) +
-  geom_point()
+plot_ly(data, x = ~Year, y = ~PPM)
 ```
 
 

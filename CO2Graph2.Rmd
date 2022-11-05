@@ -9,6 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
 library(dplyr)
+library(plotly)
 ```
 
 ```{r}
@@ -18,23 +19,27 @@ data <- read_csv('archive.csv')
 ```{r}
 
 
-data |> 
-  select(Year, `Carbon Dioxide (ppm)`)
-         
-Grouped <- 0:(nrow(data) - 1) %/% 12
+processing <- data |> 
+  select(Year, `Carbon Dioxide (ppm)`, Month)
 
-data$group <- Grouped
+Grouped <- 0:(nrow(processing) - 1) %/% 12
 
-average <- data |> 
+processing$group <- Grouped
+
+average <- processing |> 
   group_by(group) |> 
-  summarize(avg = mean(`Carbon Dioxide (ppm)`), na.rm = TRUE)
+  summarize(avg = mean(`Carbon Dioxide (ppm)`, na.rm = TRUE))
 
-data <- inner_join(data, average, by = "group") |> 
+
+processed <- inner_join(processing, average, by = "group") |> 
   select(-group) |> 
-  mutate(Replicate = rep(c("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"), nrow(data) / 12))
-
-data
+  drop_na() |> 
+  filter(Month == 12) |> 
+  add_row(Year = 2017, `Carbon Dioxide (ppm)` = 406.64, Month = 2, avg = 406.3350)
 ```
 
+```{r}
+plot_ly(processed, x = ~Year, y = ~avg)
+```
 
 
