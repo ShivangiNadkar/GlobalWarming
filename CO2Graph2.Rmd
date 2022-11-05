@@ -1,0 +1,40 @@
+---
+title: "CO2 Levels2"
+author: "Alex Kuai"
+date: "2022-11-03"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(dplyr)
+```
+
+```{r}
+data <- read_csv('archive.csv')
+```
+
+```{r}
+
+
+data |> 
+  select(Year, `Carbon Dioxide (ppm)`)
+         
+Grouped <- 0:(nrow(data) - 1) %/% 12
+
+data$group <- Grouped
+
+average <- data |> 
+  group_by(group) |> 
+  summarize(avg = mean(`Carbon Dioxide (ppm)`), na.rm = TRUE)
+
+data <- inner_join(data, average, by = "group") |> 
+  select(-group) |> 
+  mutate(Replicate = rep(c("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"), nrow(data) / 12))
+
+data
+```
+
+
+
