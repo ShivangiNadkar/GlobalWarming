@@ -1,0 +1,22 @@
+---
+title: "Temp2Graph"
+author: "Shivangi Nadkar"
+date: "2022-11-05"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(readr)
+library(tidyverse)
+library(plotly)
+```
+
+```{r}
+Temp2<-read.csv("Temp2Data.csv")
+```
+
+```{r}
+
+```
+
