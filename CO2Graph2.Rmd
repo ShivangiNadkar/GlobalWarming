@@ -39,7 +39,20 @@ processed <- inner_join(processing, average, by = "group") |>
 ```
 
 ```{r}
+# plotly, ideally we should use this in overleaf but if we can't then we should use second graph
 plot_ly(processed, x = ~Year, y = ~avg)
 ```
 
+
+
+
+```{r}
+# flat plot(noninteractive) - might need to use this for overleaf
+processed |> 
+  ggplot(aes(x = Year, y = avg)) +
+  geom_point() +
+  labs(title = "Carbon Dioxide Levels in the US from 1958 to Early 2017", 
+       y = "Carbon Dioxide Levels in Parts Per Million(PPM)",
+       caption = "UC San Diego")
+```
 

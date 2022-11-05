@@ -21,3 +21,12 @@ plot_ly(data, x = ~Year, y = ~`Degrees C`)
 ```
 
 
+```{r}
+data |> 
+  ggplot(aes(x = Year, y = `Degrees C`)) +
+  geom_point() +
+  labs(title = "Temperature in the US from 1958 to 2021", 
+       y = "Temperature",
+       caption = "HiMCM Data")
+```
+
